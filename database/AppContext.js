@@ -6,7 +6,7 @@ const connection = new Sequelize("sqlite::memory:", {
     storage : path.join(
         path.dirname(require.main.filename),
         "database",
-        "appcenar.sqlite"
+        "bookapp.sqlite"
     )
 });
 
