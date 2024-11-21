@@ -1,0 +1,56 @@
+<div class="orders-container animate-fade-in">
+    <div class="section-header mb-4">
+        <h2>Mis Pedidos</h2>
+        <div class="order-filters">
+            <div class="btn-group" role="group">
+                <button class="btn btn-outline-primary active">Todos</button>
+                <button class="btn btn-outline-primary">En Proceso</button>
+                <button class="btn btn-outline-primary">Completados</button>
+                <button class="btn btn-outline-primary">Cancelados</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="orders-list">
+        {{#each orders}}
+        <div class="order-card animate-fade-in" style="animation-delay: {{multiply @index 0.1}}s">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <div class="order-number text-center">
+                                <small class="text-muted">Orden #</small>
+                                <h5 class="mb-0">{{orderNumber}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="restaurant-info">
+                                <img src="{{restaurantImage}}" class="restaurant-logo" alt="{{restaurantName}}">
+                                <h6 class="mb-0">{{restaurantName}}</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="order-details">
+                                <p class="mb-1"><i class="fas fa-calendar me-2"></i>{{date}}</p>
+                                <p class="mb-0"><i class="fas fa-dollar-sign me-2"></i>{{total}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="order-status text-center">
+                                <span class="badge bg-{{statusColor}}">{{status}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="order-actions text-end">
+                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#orderModal{{id}}">
+                                    <i class="fas fa-eye me-1"></i>Ver Detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

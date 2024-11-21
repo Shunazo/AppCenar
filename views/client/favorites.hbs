@@ -1,0 +1,43 @@
+<div class="favorites-container animate-fade-in">
+    <div class="section-header mb-4">
+        <h2>Mis Favoritos</h2>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#each favorites}}
+        <div class="col animate-fade-in" style="animation-delay: {{multiply @index 0.1}}s">
+            <div class="favorite-card card h-100">
+                <div class="position-relative">
+                    <img src="{{image}}" class="card-img-top" alt="{{name}}">
+                    <button class="btn favorite-btn position-absolute top-0 end-0 m-3">
+                        <i class="fas fa-heart text-danger fs-4"></i>
+                    </button>
+                    <div class="restaurant-badge position-absolute bottom-0 start-0 m-3">
+                        <span class="badge bg-light text-dark">
+                            <i class="fas fa-clock me-1"></i>{{deliveryTime}} min
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text text-muted">{{cuisine}}</p>
+                    <div class="restaurant-info">
+                        <div class="ratings mb-2">
+                            <i class="fas fa-star text-warning"></i>
+                            <span class="ms-1">{{rating}} ({{reviews}} reseñas)</span>
+                        </div>
+                        <p class="mb-0">
+                            <i class="fas fa-map-marker-alt me-2"></i>{{location}}
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <a href="/commerce/{{id}}" class="btn btn-primary w-100">
+                        <i class="fas fa-utensils me-2"></i>Ver Menú
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
