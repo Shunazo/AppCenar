@@ -4,7 +4,6 @@
 
   const app = express();
 
-  // Handlebars setup with helper
   const hbs = engine({
       extname: '.hbs',
       defaultLayout: 'main',
@@ -21,10 +20,8 @@
   app.set('view engine', 'hbs');
   app.set('views', './views');
 
-  // Static files
   app.use(express.static('public'));
 
-  // Test route to view the commerce list
   app.get('/', (req, res) => {
       const commerces = [
           {
@@ -51,7 +48,7 @@
       console.log(`Server running on http://localhost:${PORT}`);
   });
 
-// Add these routes after your existing routes
+
 app.get('/catalog', (req, res) => {
     const products = [
         {
