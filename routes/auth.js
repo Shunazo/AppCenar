@@ -260,3 +260,37 @@ const { Op } = require('sequelize');
 const crypto = require('node:crypto');
 
 const { sendActivationEmail } = require('../utils/emailService');
+
+// Add this route
+router.get('/reset-password', (req, res) => {
+    res.render('auth/reset-password', {
+        title: 'Restablecer Contraseña'
+    });
+});
+
+router.post('/reset-password', async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await User.findOne({ where: { email } });
+        if (user) {
+            const resetToken = crypto.randomBytes(32).toString('hex');
+            user.resetPasswordToken = resetToken;
+            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+            await user.save();
+            
+            await sendResetPasswordEmail(email, resetToken);
+            
+            res.render('auth/reset-password', {
+                message: 'Se ha enviado un enlace a tu correo para restablecer tu contraseña'
+            });
+        } else {
+            res.render('auth/reset-password', {
+                error: 'No existe una cuenta con ese correo electrónico'
+            });
+        }
+    } catch (error) {
+        res.render('auth/reset-password', {
+            error: 'Error al procesar la solicitud'
+        });
+    }
+});

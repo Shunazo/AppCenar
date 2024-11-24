@@ -4,7 +4,6 @@
   const exphbs = require('express-handlebars');
   const app = express();
 
-
   // Session configuration
   app.use(session({
       secret: 'appcenar-secret-key',
@@ -25,6 +24,10 @@
   app.use(express.static('public'));
 
   // Routes
+  const authRoutes = require('./routes/auth');
+  app.use('/', authRoutes);
+
+  // Home route with role-based redirection
   app.get('/', (req, res) => {
       if (req.session.user) {
           const routes = {
