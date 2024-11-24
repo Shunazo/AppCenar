@@ -1,8 +1,6 @@
 const multer = require('multer');
 const path = require('path');
 
-// First, install multer if you haven't:
-// npm install multer
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -28,7 +26,7 @@ const uploadUserImage = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: {
-        fileSize: 5 * 1024 * 1024 // 5MB limit
+        fileSize: 5 * 1024 * 1024 
     }
 });
 
