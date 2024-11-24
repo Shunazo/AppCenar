@@ -1,0 +1,36 @@
+<section class="menu-section py-5">
+    <div class="container">
+        <div class="menu-categories">
+            <button class="menu-cat-btn active" data-category="all">Todos</button>
+            <button class="menu-cat-btn" data-category="entradas">Entradas</button>
+            <button class="menu-cat-btn" data-category="principales">Platos Principales</button>
+            <button class="menu-cat-btn" data-category="postres">Postres</button>
+            <button class="menu-cat-btn" data-category="bebidas">Bebidas</button>
+        </div>
+        
+        <div class="menu-items row">
+            {{#each menuItems}}
+            <div class="col-md-4 menu-item" data-category="{{this.category}}">
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="{{this.image}}" alt="{{this.name}}">
+                        {{#if this.isSpicy}}
+                        <span class="spicy-badge"><i class="fas fa-pepper-hot"></i></span>
+                        {{/if}}
+                    </div>
+                    <div class="menu-info">
+                        <h4>{{this.name}}</h4>
+                        <p class="menu-description">{{this.description}}</p>
+                        <div class="menu-footer">
+                            <span class="price">${{this.price}}</span>
+                            <button class="add-to-cart" data-id="{{this.id}}">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

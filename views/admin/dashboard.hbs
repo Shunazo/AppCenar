@@ -1,0 +1,101 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Statistics Cards -->
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5>Pedidos Totales</h5>
+                    <h2>{{stats.totalOrders}}</h2>
+                    <small>{{stats.todayOrders}} hoy</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5>Comercios</h5>
+                    <h2>{{stats.activeBusinesses}}</h2>
+                    <small>{{stats.inactiveBusinesses}} inactivos</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5>Clientes</h5>
+                    <h2>{{stats.activeClients}}</h2>
+                    <small>{{stats.inactiveClients}} inactivos</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5>Deliveries</h5>
+                    <h2>{{stats.activeDeliveries}}</h2>
+                    <small>{{stats.inactiveDeliveries}} inactivos</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ITBIS Configuration -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Configuración de ITBIS</h5>
+                </div>
+                <div class="card-body">
+                    <form id="itbisForm">
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="itbis" 
+                                   value="{{config.itbis}}" step="0.01" min="0" max="100">
+                            <span class="input-group-text">%</span>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Pedidos Recientes</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Cliente</th>
+                                    <th>Comercio</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each recentOrders}}
+                                <tr>
+                                    <td>{{id}}</td>
+                                    <td>{{client_name}}</td>
+                                    <td>{{business_name}}</td>
+                                    <td>${{total}}</td>
+                                    <td><span class="badge bg-{{statusColor status}}">{{status}}</span></td>
+                                    <td>{{formatDate created_at}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

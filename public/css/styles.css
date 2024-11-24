@@ -284,3 +284,292 @@ main {
 .favorite-btn:hover {
     transform: scale(1.1);
 }
+
+/* Global Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Navbar Enhancements */
+.navbar {
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+/* Card Animations and Styles */
+.card {
+    border: none;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.display-4 {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.lead {
+    color: #7f8c8d;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    border: none;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Category Cards */
+.category-card {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+/* Featured Section */
+.featured-section {
+    padding: 40px 0;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: white;
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+/* Additional Styles */
+.restaurant-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.restaurant-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.delivery-badge {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.rating-badge {
+    background: linear-gradient(45deg, #ffd700, #ffa500);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.search-bar {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.category-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animated {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* New Sections Styling */
+.offer-card {
+    background: linear-gradient(45deg, #FF416C, #FF4B2B);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.offer-card:hover {
+    transform: scale(1.02);
+}
+
+.offer-code {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.dish-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.dish-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.dish-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.price {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Loading Animation */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Order Tracking Styles */
+.tracking-timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 40px 0;
+}
+
+.tracking-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.tracking-step::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: -50%;
+    width: 100%;
+    height: 3px;
+    background: #e9ecef;
+    z-index: -1;
+}
+
+.tracking-step.active::before {
+    background: #007bff;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border: 3px solid #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.tracking-step.active .step-icon {
+    border-color: #007bff;
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+/* New Restaurant Card Styles */
+.restaurant-highlight {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.restaurant-stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.login-background {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}

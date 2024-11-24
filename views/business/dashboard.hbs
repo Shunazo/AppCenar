@@ -1,0 +1,116 @@
+<div class="container-fluid mt-4">
+    <!-- Statistics Cards -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5>Pedidos Hoy</h5>
+                    <h2>{{stats.todayOrders}}</h2>
+                    <small>{{stats.pendingOrders}} pendientes</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5>Ventas Hoy</h5>
+                    <h2>${{stats.todaySales}}</h2>
+                    <small>${{stats.weekSales}} esta semana</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5>Productos Activos</h5>
+                    <h2>{{stats.activeProducts}}</h2>
+                    <small>{{stats.categories}} categorías</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5>Calificación</h5>
+                    <h2>{{stats.rating}}/5.0</h2>
+                    <small>{{stats.totalReviews}} reseñas</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Orders -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Pedidos Activos</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Tiempo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activeOrdersTable">
+                                {{#each activeOrders}}
+                                <tr>
+                                    <td>{{id}}</td>
+                                    <td>{{client_name}}</td>
+                                    <td>${{total}}</td>
+                                    <td>
+                                        <span class="badge bg-{{statusColor status}}">
+                                            {{statusText status}}
+                                        </span>
+                                    </td>
+                                    <td>{{timeElapsed created_at}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" onclick="viewOrderDetails({{id}})">
+                                            Ver Detalles
+                                        </button>
+                                        {{#if isPending}}
+                                        <button class="btn btn-sm btn-success" onclick="acceptOrder({{id}})">
+                                            Aceptar
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="rejectOrder({{id}})">
+                                            Rechazar
+                                        </button>
+                                        {{/if}}
+                                        {{#if isAccepted}}
+                                        <button class="btn btn-sm btn-info" onclick="markAsReady({{id}})">
+                                            Listo para Entrega
+                                        </button>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Order Details Modal -->
+<div class="modal fade" id="orderDetailsModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles del Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="orderDetailsContent">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>

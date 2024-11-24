@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Comercios</h2>
+            <div class="input-group">
+                <input type="text" id="searchBusiness" class="form-control" placeholder="Buscar comercio...">
+                <button class="btn btn-outline-secondary" type="button" onclick="searchBusinesses()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="businessList">
+        {{#each businesses}}
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{logo}}" class="card-img-top" alt="{{name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="far fa-clock"></i> {{opening_time}} - {{closing_time}}
+                        </small>
+                    </p>
+                    <button class="btn btn-outline-primary favorite-btn" data-id="{{id}}">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="/comercios/{{id}}/productos" class="btn btn-primary">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Configuración del Sistema</h5>
+    </div>
+    <div class="card-body">
+        <form id="settingsForm">
+            {{#each settings}}
+            <div class="mb-3">
+                <label class="form-label">{{description}}</label>
+                <input type="text" 
+                       class="form-control" 
+                       name="{{key}}" 
+                       value="{{value}}"
+                       data-original="{{value}}">
+                <small class="text-muted">{{help_text}}</small>
+            </div>
+            {{/each}}
+            
+            <div class="text-end">
+                <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                    Restaurar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Guardar Cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('settingsForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const settings = [];
+    
+    formData.forEach((value, key) => {
+        settings.push({ key, value });
+    });
+    
+    try {
+        const response = await fetch('/admin/settings', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ settings })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showAlert('success', 'Configuración actualizada exitosamente');
+        } else {
+            showAlert('error', 'Error al actualizar la configuración');
+        }
+    } catch (error) {
+        showAlert('error', 'Error de conexión');
+    }
+});
+
+function resetForm() {
+    const form = document.getElementById('settingsForm');
+    const inputs = form.querySelectorAll('input');
+    
+    inputs.forEach(input => {
+        input.value = input.dataset.original;
+    });
+}
+
+function showAlert(type, message) {
+    // Implement alert display logic
+}
+</script>

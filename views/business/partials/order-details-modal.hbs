@@ -1,0 +1,67 @@
+<div class="modal fade" id="orderDetailsModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles del Pedido #<span class="order-id"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Información del Cliente</h6>
+                        <p>
+                            <strong>Nombre:</strong> <span class="client-name"></span><br>
+                            <strong>Teléfono:</strong> <span class="client-phone"></span><br>
+                            <strong>Dirección:</strong> <span class="delivery-address"></span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Información del Pedido</h6>
+                        <p>
+                            <strong>Fecha:</strong> <span class="order-date"></span><br>
+                            <strong>Estado:</strong> <span class="order-status"></span><br>
+                            <strong>Método de Pago:</strong> <span class="payment-method"></span>
+                        </p>
+                    </div>
+                </div>
+                
+                <h6>Items del Pedido</h6>
+                <ul class="list-group items-list mb-3">
+                    <!-- Items populated dynamically -->
+                </ul>
+                
+                <div class="row">
+                    <div class="col-md-6 offset-md-6">
+                        <table class="table table-sm">
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td class="text-end order-subtotal"></td>
+                            </tr>
+                            <tr>
+                                <td>Envío:</td>
+                                <td class="text-end delivery-fee"></td>
+                            </tr>
+                            <tr>
+                                <th>Total:</th>
+                                <th class="text-end order-total"></th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div id="orderTimeline" class="mt-4">
+                    <h6>Seguimiento del Pedido</h6>
+                    <div class="timeline">
+                        <!-- Timeline populated dynamically -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <div class="order-actions">
+                    <!-- Action buttons populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

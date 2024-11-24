@@ -1,0 +1,62 @@
+<div class="container mt-4">
+    <h2>Bienvenido, {{user.name}}</h2>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Comercios Cercanos</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row" id="nearbyBusinesses">
+                        {{#each nearbyBusinesses}}
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <img src="{{logo_url}}" class="card-img-top" alt="{{name}}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{name}}</h5>
+                                    <p class="card-text">{{description}}</p>
+                                    <a href="/comercios/{{id}}" class="btn btn-primary">Ver Menú</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Últimos Pedidos</h5>
+                </div>
+                <div class="card-body">
+                    {{#each recentOrders}}
+                    <div class="mb-3">
+                        <h6>Pedido #{{id}}</h6>
+                        <p class="mb-1">{{business_name}}</p>
+                        <small class="text-muted">{{formatDate created_at}}</small>
+                        <span class="badge bg-{{status_color}}">{{status_name}}</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h5>Favoritos</h5>
+                </div>
+                <div class="card-body">
+                    {{#each favorites}}
+                    <div class="mb-2">
+                        <a href="/comercios/{{id}}" class="text-decoration-none">
+                            {{name}}
+                        </a>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

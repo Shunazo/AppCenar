@@ -1,0 +1,139 @@
+<div class="container mt-4">
+    <h2>Panel de Control - {{business.name}}</h2>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Pedidos Pendientes</h5>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary btn-sm" onclick="filterOrders('new')">Nuevos</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="filterOrders('preparing')">En Preparación</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{#each pendingOrders}}
+                    <div class="card mb-3 order-card" data-status="{{status}}">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6>Pedido #{{id}}</h6>
+                                    <p class="mb-1">Cliente: {{client_name}}</p>
+                                    <small class="text-muted">{{formatTime created_at}}</small>
+                                </div>
+                                <div class="text-end">
+                                    <h6>{{formatPrice total}}</h6>
+                                    <div class="btn-group">
+                                        <button class="btn btn-success btn-sm" onclick="updateOrderStatus({{id}}, 'preparing')">
+                                            Preparar
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" onclick="updateOrderStatus({{id}}, 'cancelled')">
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <h6>Items:</h6>
+                                <ul class="list-unstyled">
+                                    {{#each items}}
+                                    <li>{{quantity}}x {{name}} - {{formatPrice price}}</li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Resumen del Día</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6>Pedidos Completados</h6>
+                        <h3>{{stats.completed_orders}}</h3>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Ventas del Día</h6>
+                        <h3>{{formatPrice stats.daily_sales}}</h3>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Calificación Promedio</h6>
+                        <div class="d-flex align-items-center">
+                            <h3 class="me-2">{{stats.average_rating}}</h3>
+                            <div class="stars">
+                                {{#times stats.average_rating}}⭐{{/times}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Estado del Negocio</h5>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="businessStatus" 
+                               {{#if business.is_open}}checked{{/if}} onchange="toggleBusinessStatus()">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Horario: {{business.open_time}} - {{business.close_time}}</p>
+                    <button class="btn btn-primary w-100" onclick="location.href='/business/menu'">
+                        Gestionar Menú
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterOrders(status) {
+    document.querySelectorAll('.order-card').forEach(card => {
+        if(status === 'all' || card.dataset.status === status) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function updateOrderStatus(orderId, status) {
+    fetch(`/business/orders/${orderId}/status`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            location.reload();
+        }
+    });
+}
+
+function toggleBusinessStatus() {
+    const isOpen = document.getElementById('businessStatus').checked;
+    fetch('/business/status', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ is_open: isOpen })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(!data.success) {
+            document.getElementById('businessStatus').checked = !isOpen;
+        }
+    });
+}
+</script>

@@ -1,0 +1,171 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-2">
+            <div class="list-group">
+                <a href="#dashboard" class="list-group-item active" data-bs-toggle="tab">Dashboard</a>
+                <a href="#users" class="list-group-item" data-bs-toggle="tab">Usuarios</a>
+                <a href="#businesses" class="list-group-item" data-bs-toggle="tab">Comercios</a>
+                <a href="#reports" class="list-group-item" data-bs-toggle="tab">Reportes</a>
+                <a href="#settings" class="list-group-item" data-bs-toggle="tab">Configuración</a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="col-md-10">
+            <div class="tab-content">
+                <!-- Dashboard Tab -->
+                <div class="tab-pane active" id="dashboard">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card text-white bg-primary mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Usuarios Activos</h5>
+                                    <h2>{{stats.active_users}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-white bg-success mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Comercios Activos</h5>
+                                    <h2>{{stats.active_businesses}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-white bg-info mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pedidos Hoy</h5>
+                                    <h2>{{stats.today_orders}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-white bg-warning mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ingresos Hoy</h5>
+                                    <h2>{{formatPrice stats.today_earnings}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Actividad Reciente</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="activityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Alertas del Sistema</h5>
+                                </div>
+                                <div class="card-body">
+                                    {{#each alerts}}
+                                    <div class="alert alert-{{type}} mb-2">
+                                        {{message}}
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Tab -->
+                <div class="tab-pane" id="users">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5>Gestión de Usuarios</h5>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                                Nuevo Usuario
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each users}}
+                                    <tr>
+                                        <td>{{id}}</td>
+                                        <td>{{name}}</td>
+                                        <td>{{email}}</td>
+                                        <td>{{role}}</td>
+                                        <td>
+                                            <span class="badge bg-{{#if is_active}}success{{else}}danger{{/if}}">
+                                                {{#if is_active}}Activo{{else}}Inactivo{{/if}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary" onclick="editUser({{id}})">
+                                                Editar
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteUser({{id}})">
+                                                Eliminar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional tabs implementation continues... -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Implementación de gráficos y funciones de gestión
+const ctx = document.getElementById('activityChart').getContext('2d');
+const activityChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{activity.labels}},
+        datasets: [{
+            label: 'Pedidos',
+            data: {{activity.orders}},
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    }
+});
+
+function editUser(userId) {
+    // Implementación de edición de usuario
+}
+
+function deleteUser(userId) {
+    if(confirm('¿Está seguro de eliminar este usuario?')) {
+        fetch(`/admin/users/${userId}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                location.reload();
+            }
+        });
+    }
+}
+</script>

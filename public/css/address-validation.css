@@ -1,0 +1,50 @@
+.address-input-container {
+    position: relative;
+}
+
+.map-preview-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.pac-container {
+    z-index: 1060 !important;
+}
+
+.address-marker-info {
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.address-validation-feedback {
+    display: none;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+}
+
+.address-validation-feedback.valid {
+    color: #198754;
+}
+
+.address-validation-feedback.invalid {
+    color: #dc3545;
+}
+
+.address-input-container.is-valid .address-validation-feedback.valid {
+    display: block;
+}
+
+.address-input-container.is-invalid .address-validation-feedback.invalid {
+    display: block;
+}
+
+#addressMapPreview {
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

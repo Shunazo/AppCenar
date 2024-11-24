@@ -1,0 +1,80 @@
+<div class="container-fluid mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Aprobación de Comercios</h4>
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-tabs mb-3">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#pending">Pendientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#approved">Aprobados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#rejected">Rechazados</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="pending">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Comercio</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Tipo</th>
+                                    <th>Documentos</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each pendingBusinesses}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{email}}</td>
+                                    <td>{{phone}}</td>
+                                    <td>{{business_type}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" onclick="viewDocuments({{id}})">
+                                            Ver Documentos
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success" onclick="approveBusiness({{id}})">
+                                            Aprobar
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="rejectBusiness({{id}})">
+                                            Rechazar
+                                        </button>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Similar structure for approved and rejected tabs -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Documents Modal -->
+<div class="modal fade" id="documentsModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Documentos del Comercio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="documentsContainer">
+                    <!-- Documents will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

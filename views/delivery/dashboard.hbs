@@ -1,0 +1,90 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Active Deliveries -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Entregas Activas</h5>
+                </div>
+                <div class="card-body">
+                    <div id="activeDeliveries">
+                        {{#each deliveries}}
+                        <div class="card mb-3 delivery-card" data-order-id="{{id}}">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="mb-0">Pedido #{{id}}</h6>
+                                    <span class="badge bg-{{statusColor status}}">{{statusText status}}</span>
+                                </div>
+                                
+                                <div class="delivery-details">
+                                    <div class="mb-2">
+                                        <i class="fas fa-store"></i> <strong>Recoger en:</strong>
+                                        <p class="mb-0">{{business_name}}</p>
+                                        <small>{{pickup_address}}</small>
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <i class="fas fa-map-marker-alt"></i> <strong>Entregar en:</strong>
+                                        <p class="mb-0">{{delivery_address}}</p>
+                                        <small>Cliente: {{client_name}} - {{client_phone}}</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="action-buttons mt-3">
+                                    {{#if (eq status "assigned")}}
+                                    <button class="btn btn-primary btn-sm" onclick="updateDeliveryStatus({{id}}, 'picked_up')">
+                                        Recogido
+                                    </button>
+                                    {{/if}}
+                                    
+                                    {{#if (eq status "picked_up")}}
+                                    <button class="btn btn-success btn-sm" onclick="updateDeliveryStatus({{id}}, 'delivered')">
+                                        Entregado
+                                    </button>
+                                    {{/if}}
+                                    
+                                    <button class="btn btn-info btn-sm" onclick="showRoute({{id}})">
+                                        Ver Ruta
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <!-- Map -->
+            <div class="card mb-4">
+                <div class="card-body p-0">
+                    <div id="deliveryMap" style="height: 400px;"></div>
+                </div>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="card">
+                <div class="card-header">
+                    <h5>Estadísticas del Día</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <h6>Entregas Hoy</h6>
+                            <h3>{{stats.today_deliveries}}</h3>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <h6>Completadas</h6>
+                            <h3>{{stats.completed_deliveries}}</h3>
+                        </div>
+                        <div class="col-12">
+                            <h6>Tiempo Promedio</h6>
+                            <h3>{{formatTime stats.avg_delivery_time}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

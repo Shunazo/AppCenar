@@ -1,0 +1,77 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Registro de Comercio</h4>
+        </div>
+        <div class="card-body">
+            <form id="businessRegistrationForm" enctype="multipart/form-data">
+                <!-- Business Information -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h5>Información del Comercio</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Nombre del Comercio</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tipo de Comercio</label>
+                            <select class="form-select" name="business_type_id" required>
+                                {{#each businessTypes}}
+                                <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">RNC</label>
+                            <input type="text" class="form-control" name="rnc" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Dirección</label>
+                            <textarea class="form-control" name="address" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Información de Contacto</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Horario de Apertura</label>
+                            <input type="time" class="form-control" name="opening_time" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Horario de Cierre</label>
+                            <input type="time" class="form-control" name="closing_time" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document Upload -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Documentos Requeridos</h5>
+                        <div class="mb-3">
+                            <label class="form-label">RNC (PDF)</label>
+                            <input type="file" class="form-control" name="rnc_document" accept=".pdf" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Registro Mercantil (PDF)</label>
+                            <input type="file" class="form-control" name="mercantile_document" accept=".pdf" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Logo del Comercio</label>
+                            <input type="file" class="form-control" name="logo" accept="image/*" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Registrar Comercio</button>
+            </form>
+        </div>
+    </div>
+</div>

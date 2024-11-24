@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h1>Mi Perfil</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Información Personal</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" value="{{user.name}}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" value="{{user.email}}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

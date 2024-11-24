@@ -1,0 +1,88 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Mis Direcciones</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+            <i class="fas fa-plus"></i> Nueva Dirección
+        </button>
+    </div>
+
+    <div class="row">
+        {{#each addresses}}
+        <div class="col-md-6 mb-4" data-address-id="{{id}}">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">{{label}}</h5>
+                        {{#if is_default}}
+                        <span class="badge bg-primary">Principal</span>
+                        {{/if}}
+                    </div>
+                    <p class="card-text">
+                        <i class="fas fa-map-marker-alt"></i> {{address}}
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="fas fa-info-circle"></i> {{reference}}
+                        </small>
+                    </p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary btn-sm edit-address" 
+                                data-address="{{toJSON this}}">
+                            Editar
+                        </button>
+                        {{#unless is_default}}
+                        <button class="btn btn-outline-success btn-sm set-default">
+                            Establecer Principal
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm delete-address">
+                            Eliminar
+                        </button>
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<!-- Add/Edit Address Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva Dirección</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addressForm">
+                    <input type="hidden" name="addressId">
+                    <div class="mb-3">
+                        <label class="form-label">Etiqueta</label>
+                        <input type="text" class="form-control" name="label" required>
+                        <small class="text-muted">Ej: Casa, Trabajo, etc.</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Dirección</label>
+                        <input type="text" class="form-control" name="address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Referencia</label>
+                        <textarea class="form-control" name="reference" rows="2"></textarea>
+                        <small class="text-muted">Indicaciones adicionales para el delivery</small>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="is_default">
+                            <label class="form-check-label">Establecer como dirección principal</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="saveAddress">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

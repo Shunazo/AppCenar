@@ -1,0 +1,60 @@
+.card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.card-body {
+    padding: 2rem;
+}
+  .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+
+  .success-card {
+      padding: 40px 20px;
+  }
+
+  .success-icon {
+      font-size: 4rem;
+      color: #28a745;
+  }
+
+  .error-icon {
+      font-size: 4rem;
+      color: #dc3545;
+  }
+
+  .lead {
+      color: #6c757d;
+      margin: 20px 0;
+  }
+
+  .card {
+      border: none;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: 15px;
+  }
+
+  .btn-primary {
+      padding: 12px 30px;
+      font-weight: 500;
+      border-radius: 30px;
+  }
+.btn-outline-primary:hover {
+    transform: translateY(-2px);
+}
+
+.alert {
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 15px;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}

@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <h1>Mis Direcciones</h1>
+    <div class="card">
+        <div class="card-body">
+            <button class="btn btn-primary mb-3">Agregar Nueva Dirección</button>
+            <div class="list-group">
+                {{#if addresses}}
+                    {{#each addresses}}
+                        <div class="list-group-item">
+                            <h5 class="mb-1">{{this.alias}}</h5>
+                            <p class="mb-1">{{this.street}}</p>
+                            <small>{{this.city}}, {{this.state}}</small>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <p>No hay direcciones registradas</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

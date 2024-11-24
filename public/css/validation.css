@@ -1,0 +1,41 @@
+.password-strength-meter {
+    height: 4px;
+    background-color: #e9ecef;
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+.password-strength-bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.password-strength-text {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: #6c757d;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.validation-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.was-validated .form-control:valid ~ .validation-icon.valid {
+    color: #198754;
+    display: block;
+}
+
+.was-validated .form-control:invalid ~ .validation-icon.invalid {
+    color: #dc3545;
+    display: block;
+}

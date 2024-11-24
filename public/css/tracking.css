@@ -1,0 +1,51 @@
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e9ecef;
+    z-index: 1;
+}
+
+.step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+
+.step.active .step-icon {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.step-text {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.step.active .step-text {
+    color: #007bff;
+    font-weight: bold;
+}

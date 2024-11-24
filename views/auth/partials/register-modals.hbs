@@ -1,0 +1,119 @@
+<!-- User Registration Modal -->
+<div class="modal fade" id="userRegisterModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="userRegisterForm" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registro de Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre completo</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Correo electrónico</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" name="phone" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-control" required>
+                        <small class="text-muted">Mínimo 6 caracteres, debe incluir números</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Confirmar Contraseña</label>
+                        <input type="password" name="confirmPassword" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Foto de perfil</label>
+                        <input type="file" name="photo" class="form-control" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tipo de usuario</label>
+                        <select name="role" class="form-select" required>
+                            <option value="client">Cliente</option>
+                            <option value="delivery">Repartidor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Business Registration Modal -->
+<div class="modal fade" id="businessRegisterModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="businessRegisterForm" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registro de Comercio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre del comercio</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Correo electrónico</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" name="phone" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tipo de comercio</label>
+                        <select name="businessType" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option value="restaurant">Restaurante</option>
+                            <option value="fastfood">Comida Rápida</option>
+                            <option value="cafe">Café</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Horario apertura</label>
+                                <input type="time" name="openTime" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Horario cierre</label>
+                                <input type="time" name="closeTime" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Logo del comercio</label>
+                        <input type="file" name="logo" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-control" required>
+                        <small class="text-muted">Mínimo 6 caracteres, debe incluir números</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Confirmar Contraseña</label>
+                        <input type="password" name="confirmPassword" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Registrar Comercio</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

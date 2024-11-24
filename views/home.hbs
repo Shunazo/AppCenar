@@ -1,0 +1,119 @@
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-4 text-white">Descubre Sabores Increíbles</h1>
+        <p class="lead text-white">Los mejores restaurantes de tu ciudad, ahora más cerca que nunca</p>
+        <form class="mt-4 mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar restaurantes...">
+                        <button class="btn btn-light" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Featured Restaurants -->
+    <section class="featured-section">
+        <h2 class="text-center mb-4">Restaurantes Destacados</h2>
+        <div class="row">
+            {{#each featuredRestaurants}}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <p class="card-text">{{this.description}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-success">{{this.rating}} ★</span>
+                            <a href="/restaurante/{{this.id}}" class="btn btn-primary">Ver Menú</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <h2 class="text-center mb-4">Explora por Categorías</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="category-card">
+                    <i class="fas fa-hamburger fa-2x mb-3"></i>
+                    <h5>Comida Rápida</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-card">
+                    <i class="fas fa-utensils fa-2x mb-3"></i>
+                    <h5>Restaurantes</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-card">
+                    <i class="fas fa-coffee fa-2x mb-3"></i>
+                    <h5>Cafeterías</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-card">
+                    <i class="fas fa-ice-cream fa-2x mb-3"></i>
+                    <h5>Postres</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Special Offers Section -->
+<section class="offers-section py-5 animated">
+    <div class="container">
+        <h2 class="text-center mb-4">Ofertas Especiales</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="offer-card">
+                    <div class="offer-content">
+                        <h3>2x1 en Pizzas</h3>
+                        <p>Todos los martes</p>
+                        <span class="offer-code">PIZZA2X1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="offer-card">
+                    <div class="offer-content">
+                        <h3>Envío Gratis</h3>
+                        <p>En pedidos superiores a $200</p>
+                        <span class="offer-code">FREEDELIVERY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Dishes Section -->
+<section class="dishes-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Platos Populares</h2>
+        <div class="row">
+            {{#each popularDishes}}
+            <div class="col-md-3">
+                <div class="dish-card animated">
+                    <img src="{{this.image}}" alt="{{this.name}}" class="dish-image">
+                    <div class="dish-info">
+                        <h5>{{this.name}}</h5>
+                        <p class="price">${{this.price}}</p>
+                        <button class="btn btn-sm btn-outline-primary">Ordenar Ahora</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

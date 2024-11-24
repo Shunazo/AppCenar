@@ -1,0 +1,51 @@
+<div class="container mt-4">
+    <h2>Mis Favoritos</h2>
+    
+    <div class="row mt-4">
+        {{#each favorites}}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <img src="{{logo}}" class="card-img-top business-logo" alt="{{name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">{{business_type}}</small>
+                    </p>
+                    <p class="card-text">
+                        <i class="fas fa-map-marker-alt"></i> {{address}}
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="rating">
+                            <i class="fas fa-star text-warning"></i>
+                            <span>{{rating}}</span>
+                        </div>
+                        <small class="text-muted">{{order_count}} pedidos realizados</small>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+                    <div class="d-flex justify-content-between">
+                        <a href="/comercios/{{business_id}}" class="btn btn-primary">
+                            Ver Menú
+                        </a>
+                        <button class="btn btn-outline-danger remove-favorite" 
+                                data-business-id="{{business_id}}">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-12 text-center mt-5">
+            <div class="empty-state">
+                <i class="fas fa-heart fa-3x text-muted mb-3"></i>
+                <h4>No tienes favoritos aún</h4>
+                <p class="text-muted">Explora nuestros comercios y agrega tus favoritos</p>
+                <a href="/comercios" class="btn btn-primary mt-3">
+                    Explorar Comercios
+                </a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

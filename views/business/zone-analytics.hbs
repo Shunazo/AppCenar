@@ -1,0 +1,83 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Análisis de Zonas de Entrega</h5>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary" id="toggleHeatmap">
+                            <i class="fas fa-fire"></i> Mapa de Calor
+                        </button>
+                        <button class="btn btn-outline-primary" id="toggleClusters">
+                            <i class="fas fa-chart-pie"></i> Clusters
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="analyticsMap" style="height: 600px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Estadísticas por Zona</h5>
+                </div>
+                <div class="card-body">
+                    <div id="zoneStats">
+                        {{#each zones}}
+                        <div class="zone-stat-item mb-3" data-zone-id="{{id}}">
+                            <h6>{{name}}</h6>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Entregas Totales:</span>
+                                <strong>{{deliveryCount}}</strong>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tiempo Promedio:</span>
+                                <strong>{{averageDeliveryTime}} min</strong>
+                            </div>
+                            <div class="progress" style="height: 5px;">
+                                <div class="progress-bar" role="progressbar" 
+                                     style="width: {{efficiency}}%"></div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Horas Pico</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="peakHoursChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Zone Details Modal -->
+<div class="modal fade" id="zoneDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles de Zona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Productos Más Vendidos</h6>
+                        <div id="popularItems"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Rendimiento por Día</h6>
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

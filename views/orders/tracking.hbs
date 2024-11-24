@@ -1,0 +1,86 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Seguimiento de Pedido #{{order.id}}</h4>
+        </div>
+        <div class="card-body">
+            <!-- Order Status Timeline -->
+            <div class="order-timeline mb-4">
+                <div class="status-steps">
+                    {{#each statusSteps}}
+                    <div class="step {{#if completed}}completed{{/if}} {{#if active}}active{{/if}}">
+                        <div class="step-icon">
+                            <i class="fas {{icon}}"></i>
+                        </div>
+                        <div class="step-label">{{label}}</div>
+                        {{#if timestamp}}
+                        <div class="step-time">{{formatTime timestamp}}</div>
+                        {{/if}}
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Map Container -->
+                <div class="col-md-8">
+                    <div id="trackingMap" style="height: 400px;"></div>
+                </div>
+
+                <!-- Order Details -->
+                <div class="col-md-4">
+                    <div class="order-details">
+                        <h5>Detalles del Pedido</h5>
+                        <div class="mb-3">
+                            <strong>Comercio:</strong>
+                            <p>{{order.business_name}}</p>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Dirección de Entrega:</strong>
+                            <p>{{order.delivery_address}}</p>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Delivery:</strong>
+                            <p>{{order.delivery_name}}</p>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Total:</strong>
+                            <p>${{order.total}}</p>
+                        </div>
+                        <div class="estimated-time">
+                            <strong>Tiempo Estimado:</strong>
+                            <h3>{{order.estimated_time}} min</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Items -->
+            <div class="order-items mt-4">
+                <h5>Productos</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each order.items}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{quantity}}</td>
+                                <td>${{price}}</td>
+                                <td>${{subtotal}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

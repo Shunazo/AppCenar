@@ -1,0 +1,98 @@
+<div class="container-fluid mt-4">
+    <!-- Date Range Selector -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <select class="form-select" id="dateRangeSelect">
+                        <option value="today">Hoy</option>
+                        <option value="week">Esta Semana</option>
+                        <option value="month">Este Mes</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                </div>
+                <div class="col-md-8" id="customDateRange" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="date" class="form-control" id="startDate">
+                        </div>
+                        <div class="col-md-5">
+                            <input type="date" class="form-control" id="endDate">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary w-100" onclick="updateAnalytics()">Aplicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Cards -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Total Ventas</h6>
+                    <h3>$<span id="totalSales">0.00</span></h3>
+                    <small class="text-muted">
+                        <span id="salesComparison"></span>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Pedidos Completados</h6>
+                    <h3><span id="totalOrders">0</span></h3>
+                    <small class="text-muted">
+                        <span id="ordersComparison"></span>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Ticket Promedio</h6>
+                    <h3>$<span id="averageTicket">0.00</span></h3>
+                    <small class="text-muted">
+                        <span id="ticketComparison"></span>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Calificación Promedio</h6>
+                    <h3><span id="averageRating">0.0</span>/5.0</h3>
+                    <small class="text-muted">
+                        <span id="ratingComparison"></span>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Ventas por Día</h5>
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Productos Más Vendidos</h5>
+                    <canvas id="productsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

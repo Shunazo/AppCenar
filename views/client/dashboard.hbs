@@ -1,0 +1,16 @@
+<div class="container mt-4">
+    <h2>Tipos de Comercios</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#each businessTypes}}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="{{icon}} fa-3x mb-3"></i>
+                    <h5 class="card-title">{{name}}</h5>
+                    <a href="/comercios/tipo/{{id}}" class="btn btn-primary">Ver Comercios</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

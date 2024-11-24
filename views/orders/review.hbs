@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Calificar Pedido #{{order.id}}</h4>
+        </div>
+        <div class="card-body">
+            <form id="reviewForm">
+                <input type="hidden" name="orderId" value="{{order.id}}">
+                
+                <!-- Business Rating -->
+                <div class="mb-4">
+                    <h5>Calificar Comercio: {{order.business_name}}</h5>
+                    <div class="rating-container">
+                        <div class="stars">
+                            {{#times 5}}
+                            <i class="far fa-star" data-rating="{{this}}" data-type="business"></i>
+                            {{/times}}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Comentario sobre el comercio</label>
+                            <textarea class="form-control" name="businessComment" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Rating -->
+                {{#if order.delivery_name}}
+                <div class="mb-4">
+                    <h5>Calificar Delivery: {{order.delivery_name}}</h5>
+                    <div class="rating-container">
+                        <div class="stars">
+                            {{#times 5}}
+                            <i class="far fa-star" data-rating="{{this}}" data-type="delivery"></i>
+                            {{/times}}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Comentario sobre el delivery</label>
+                            <textarea class="form-control" name="deliveryComment" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+
+                <button type="submit" class="btn btn-primary">Enviar Calificación</button>
+            </form>
+        </div>
+    </div>
+</div>
